@@ -1,24 +1,27 @@
 
 
 Launch ursim
-Ensure program is just external control w ip 10.0.2.15
+
+Ensure program has just the external control with the ip address set to 10.0.2.15
+
+NB: if you have overwritten the program, you can find the external control under URCaps
 
 
-start terminal ctrl+alt+t
+Start a terminal with `ctrl+alt+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
 roslaunch ur_robot_driver ur5e_bringup.launch robot_ip:=10.0.2.15
 ```
 
-play program on robot
+Play the program on URSim
 
-new terminal tab ctrl+shift+t
+Open a new terminal tab with `ctrl+shift+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
 roslaunch ur5_e_moveit_config ur5_e_moveit_planning_execution.launch
 ```
 
-new terminal tab ctrl+shift+t
+Open a new terminal tab `ctrl+shift+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
 roslaunch ur5_e_moveit_config moveit_rviz.launch config:=true
@@ -38,3 +41,4 @@ ln -s ~/lab04_repo/Lab04_Pose_Controller ~/lab04_ws/src/
 cd ~/lab04_ws
 catkin_make
 ```
+Start programming!
