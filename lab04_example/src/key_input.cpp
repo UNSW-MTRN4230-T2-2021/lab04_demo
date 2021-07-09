@@ -76,6 +76,8 @@ int main(int argc, char **argv)
 			case('e'):
 				key = KeyControl::E_KEY;
 				break;
+            case(' '):
+                key = KeyControl::SPACE_KEY;
 			default:
 				key = KeyControl::NULL_KEY;
 				no_key_count = ++no_key_count % max_no_key_count;

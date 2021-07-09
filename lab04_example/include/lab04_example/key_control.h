@@ -47,6 +47,7 @@ namespace KeyControl {
         D_KEY,
         Q_KEY,
         E_KEY,
+        SPACE_KEY,
     };
 
 }
