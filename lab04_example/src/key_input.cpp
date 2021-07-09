@@ -55,7 +55,7 @@ int main(int argc, char **argv)
 
 	while (ros::ok())
 	{
-        c = KeyControl::getch();
+		c = KeyControl::getch();
 
 		switch(c) {
 			case('w'):
@@ -76,33 +76,39 @@ int main(int argc, char **argv)
 			case('e'):
 				key = KeyControl::E_KEY;
 				break;
-            case(' '):
-                key = KeyControl::SPACE_KEY;
+			case(' '):
+				key = KeyControl::SPACE_KEY;
+				break;
 			default:
 				key = KeyControl::NULL_KEY;
-				no_key_count = ++no_key_count % max_no_key_count;
 		}
 
 		if(key != KeyControl::NULL_KEY) {
+			/* send every non-null key */
 			no_key_count = 0;
 
 			key_msg.data = key;
 			key_control_pub.publish(key_msg);
-			//ROS_INFO("Key %d", key);
 		} else {
-			if(!no_key_count){
+			ROS_INFO_DELAYED_THROTTLE(10,"Press Space to quit");
+			if(++no_key_count == max_no_key_count) {
 				/* Reached time out */
+				/* send null key after 0.5 sec time out*/
 				key_msg.data = key;
 				key_control_pub.publish(key_msg);
 				ROS_INFO("Key Control Time Out");
 			}
 		}
 
+		if(key == KeyControl::SPACE_KEY) {
+			/* exit */
+			break;
+		}
+
 		ros::spinOnce();
 
 		loop_rate.sleep();
 	}
-
 
 	return 0;
 }
