@@ -1,3 +1,5 @@
+# Author: Luke Dennis l.dennis@unsw.edu.au
+
 cmake_minimum_required(VERSION 3.0.2)
 project(lab04_example)
 
@@ -17,5 +19,7 @@ include_directories(
 )
 
 add_executable(${PROJECT_NAME}_key_input src/key_input.cpp)
-target_link_libraries(${PROJECT_NAME}_key_input  ${catkin_LIBRARIES} )
+target_link_libraries(${PROJECT_NAME}_key_input  ${catkin_LIBRARIES})
 
+add_executable(${PROJECT_NAME}_vel_cmd_node src/velocity_command_node.cpp)
+target_link_libraries(${PROJECT_NAME}_vel_cmd_node  ${catkin_LIBRARIES})
