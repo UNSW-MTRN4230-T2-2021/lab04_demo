@@ -24,7 +24,7 @@ class KeyCmdSrv {
 		auto convert_to_vel_(lab04_example::KeyToCmdVel::Request & req,
 				lab04_example::KeyToCmdVel::Response & res) -> bool {
 
-			ROS_INFO("(%lf, %lf) (%lf, %lf)", last_vel_.linear.x, last_vel_.linear.y, 
+			ROS_INFO("(%lf, %lf) (%lf, %lf)", last_vel_.linear.x, last_vel_.linear.y,
 					last_vel_.angular.x, last_vel_.angular.y);
 
 			/* VERY basic service, this can be extended to do basic DR based on
