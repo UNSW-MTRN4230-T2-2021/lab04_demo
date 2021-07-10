@@ -1,3 +1,4 @@
+# Author: Luke Dennis l.dennis@unsw.edu.au
 int8 key
 ---
 geometry_msgs/Twist cmd_vel

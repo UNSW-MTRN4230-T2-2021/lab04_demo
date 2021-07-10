@@ -35,80 +35,80 @@
 
 int main(int argc, char **argv)
 {
-	auto const spin_hz = static_cast<int>(100);
+    auto const spin_hz = static_cast<int>(100);
 
-	ros::init(argc, argv, "key_input");
+    ros::init(argc, argv, "key_input");
 
-	ros::NodeHandle n;
+    ros::NodeHandle n;
 
-	ros::Publisher key_control_pub = n.advertise<std_msgs::Int8>("KeyControl", spin_hz*0.5);
+    ros::Publisher key_control_pub = n.advertise<std_msgs::Int8>("KeyControl", spin_hz*0.5);
 
-	ros::Rate loop_rate(spin_hz);
+    ros::Rate loop_rate(spin_hz);
 
-	auto key_msg = std_msgs::Int8{};
-	auto key = KeyControl::key_press{};
+    auto key_msg = std_msgs::Int8{};
+    auto key = KeyControl::key_press{};
 
-	auto c = int8_t{};
-	auto no_key_count = 0;
-	auto const max_no_key_count = static_cast<int>(0.5*spin_hz); /* Time out every 0.5 seconds */
+    auto c = int8_t{};
+    auto no_key_count = 0;
+    auto const max_no_key_count = static_cast<int>(0.5*spin_hz); /* Time out every 0.5 seconds */
 
 
-	while (ros::ok())
-	{
-		c = KeyControl::getch();
+    while (ros::ok())
+    {
+        c = KeyControl::getch();
 
-		switch(c) {
-			case('w'):
-				key = KeyControl::W_KEY;
-				break;
-			case('a'):
-				key = KeyControl::A_KEY;
-				break;
-			case('s'):
-				key = KeyControl::S_KEY;
-				break;
-			case('d'):
-				key = KeyControl::D_KEY;
-				break;
-			case('q'):
-				key = KeyControl::Q_KEY;
-				break;
-			case('e'):
-				key = KeyControl::E_KEY;
-				break;
-			case(' '):
-				key = KeyControl::SPACE_KEY;
-				break;
-			default:
-				key = KeyControl::NULL_KEY;
-		}
+        switch(c) {
+            case('w'):
+                key = KeyControl::W_KEY;
+                break;
+            case('a'):
+                key = KeyControl::A_KEY;
+                break;
+            case('s'):
+                key = KeyControl::S_KEY;
+                break;
+            case('d'):
+                key = KeyControl::D_KEY;
+                break;
+            case('q'):
+                key = KeyControl::Q_KEY;
+                break;
+            case('e'):
+                key = KeyControl::E_KEY;
+                break;
+            case(' '):
+                key = KeyControl::SPACE_KEY;
+                break;
+            default:
+                key = KeyControl::NULL_KEY;
+        }
 
-		if(key != KeyControl::NULL_KEY) {
-			/* send every non-null key */
-			no_key_count = 0;
+        if(key != KeyControl::NULL_KEY) {
+            /* send every non-null key */
+            no_key_count = 0;
 
-			key_msg.data = key;
-			key_control_pub.publish(key_msg);
-		} else {
-			ROS_INFO_DELAYED_THROTTLE(10,"Press Space to quit");
-			if(++no_key_count == max_no_key_count) {
-				/* Reached time out */
-				/* send null key after 0.5 sec time out*/
-				key_msg.data = key;
-				key_control_pub.publish(key_msg);
-				ROS_INFO("Key Control Time Out");
-			}
-		}
+            key_msg.data = key;
+            key_control_pub.publish(key_msg);
+        } else {
+            ROS_INFO_DELAYED_THROTTLE(10,"Press Space to quit");
+            if(++no_key_count == max_no_key_count) {
+                /* Reached time out */
+                /* send null key after 0.5 sec time out*/
+                key_msg.data = key;
+                key_control_pub.publish(key_msg);
+                ROS_INFO("Key Control Time Out");
+            }
+        }
 
-		if(key == KeyControl::SPACE_KEY) {
-			/* exit */
-			break;
-		}
+        if(key == KeyControl::SPACE_KEY) {
+            /* exit */
+            break;
+        }
 
-		ros::spinOnce();
+        ros::spinOnce();
 
-		loop_rate.sleep();
-	}
+        loop_rate.sleep();
+    }
 
-	return 0;
+    return 0;
 }

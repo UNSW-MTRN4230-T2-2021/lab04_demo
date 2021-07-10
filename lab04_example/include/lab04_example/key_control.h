@@ -1,3 +1,4 @@
+/* Author: Luke Dennis l.dennis@unsw.edu.au */
 
 #include <ros/ros.h>
 #include <termios.h>
