@@ -6,7 +6,11 @@
 #include <lab04_example/KeyToCmdVel.h>
 #include <lab04_example/key_control.h>
 
-
+/* Class containing service responsible for converting key commands to
+ * twists and tracking the current velocity. This only works for a single
+ * robot and would have to be extended to have multiple classes or topics 
+ * for multiple robots.
+ */
 class KeyCmdSrv {
     public:
         KeyCmdSrv(ros::NodeHandle nh) : nh_(nh), last_vel_(geometry_msgs::Twist{}) {
@@ -27,9 +31,9 @@ class KeyCmdSrv {
             ROS_INFO("(%lf, %lf) (%lf, %lf)", last_vel_.linear.x, last_vel_.linear.y,
                     last_vel_.angular.x, last_vel_.angular.y);
 
-            /* VERY basic service, this can be extended to do basic DR based on
-             * previous velocity and current command to smooth out changes.
-             * E.G. cmd can be taken as acc and applied accordingly
+            /* VERY basic service, this can be extended to do basic Dead Reckoning
+             * based on previous velocity and current command to smooth out changes.
+             * E.G. cmd can be taken as acceleration and applied accordingly
              */
             last_vel_.linear.x = 0;
             last_vel_.linear.y = 0;
