@@ -64,8 +64,10 @@ namespace Lab04 {
 					cmd_vel_msg.angular.y = 0;
 					cmd_vel_msg.angular.z = 0;
 				}
-				ROS_INFO("(%lf, %lf) (%lf, %lf)", cmd_vel_msg.linear.x, cmd_vel_msg.linear.y,
-						cmd_vel_msg.angular.x, cmd_vel_msg.angular.y);
+				if(req.key != KeyControl::NULL_KEY) {
+					ROS_INFO("(%lf, %lf) (%lf, %lf)", cmd_vel_msg.linear.x, cmd_vel_msg.linear.y,
+							cmd_vel_msg.angular.x, cmd_vel_msg.angular.y);
+				}
 				twist_pub_.publish(cmd_vel_msg);
 				current_cmd_ = KeyControl::NULL_KEY; /* Set to zero in case subscriber does not recieve fresh data */
 			}

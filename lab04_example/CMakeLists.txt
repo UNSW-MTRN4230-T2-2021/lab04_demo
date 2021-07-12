@@ -10,7 +10,11 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   genmsg
+  roslaunch
 )
+
+# Perform checks on launch files too
+roslaunch_add_file_check(launch)
 
 add_service_files(FILES KeyToCmdVel.srv)
 

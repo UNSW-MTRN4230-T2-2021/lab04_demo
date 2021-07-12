@@ -52,6 +52,7 @@ int main(int argc, char **argv)
 	auto no_key_count = 0;
 	auto const max_no_key_count = static_cast<int>(0.5*spin_hz); /* Time out every 0.5 seconds */
 
+	ROS_INFO("Enter WASD for linear control, QE for angular control, Space to exit");
 
 	while (ros::ok())
 	{

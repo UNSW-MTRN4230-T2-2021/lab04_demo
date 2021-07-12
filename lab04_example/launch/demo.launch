@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load server -->
+  <node name="velocity_server" pkg="lab04_example" type="lab04_example_vel_server" output="screen" required="true"/>
+
+  <!-- Load Control Node -->
+  <node name="velocity_control_node" pkg="lab04_example" type="lab04_example_vel_cmd_node" output="screen" required="true"/>
+
+  <!-- Load Key Input Node -->
+  <node name="key_input_node" pkg="lab04_example" type="lab04_example_key_input" output="screen" required="true"/>
+</launch>
+
