@@ -58,19 +58,28 @@ For setting up for the lab task:
 ```bash
 cd # Ensure we are in the home directory
 mkdir ~/lab04_repo/ # Create directory for repository
-mkdir -p ~/lab04_ws/src # Create directory for ROS workspace and its source subdirectory 
-cd lab04_ws # Change into Lab04 ROS Workspace
+mkdir -p ~/lab_workspaces/lab04_ws/src # Create directory for ROS workspace and its source subdirectory 
+cd lab_workspaces/lab04_ws # Change into Lab04 ROS Workspace
 catkin_make # Initialise Workspace
 source devel/setup.bash # Tell ROS what our workspace looks like
 cd src && catkin_create_pkg lab04_twist_controller std_msgs rospy roscpp geometry_msgs # Create ROS package
 mv lab04_twist_controller ~/lab04_repo/ # Move the package into our repository for tracking
-ln -s ~/lab04_repo/lab04_twist_controller ~/lab04_ws/src/ # Symbolically link the package into our ROS workspace so that the workspace can still see it
-cd ~/lab04_ws && catkin_make # Move into the root of the ROS workspace and compile and build the workspace
+ln -s ~/lab04_repo/lab04_twist_controller . # Symbolically link the package from our repo into our ROS workspace so that the workspace can still see it
+cd .. && catkin_make # Move into the root of the ROS workspace and compile and build the workspace
 cd ~/lab04_repo && git init && git add . # Move into repository, initialise repo and add package to repo
-code ./lab04_twist_controller/
+git commit -am "Setup lab04 repo with empty package" # Commit the added files to the repository for tracking. If it is the first time committing on the VM you will need configure git (read the error message)
 ```
 Make a private repository on Github and follow the instructions to add an existing repo to GitHub.
 
 If you want to avoid using your username and password everytime ou push and pull, follow GitHubs guide on setting up SSH keys https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh and ensure you use the ssh url not the https url for linking the repo on the vm to your remote GitHub repo.
 
 After that, you're all set up! You can start programming your ROS nodes!
+
+## Demo solution
+
+Checkout the demo solution [lab04_example]
+
+```
+source ~/lab_workspaces/lab04_ws/devel/setup.bash
+roslaunch lab04_example demo.launch
+```
