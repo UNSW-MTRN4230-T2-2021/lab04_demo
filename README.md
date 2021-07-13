@@ -32,13 +32,13 @@ The terminal should output logging information saying the robot is ready to reci
 Open a new terminal tab with `ctrl+shift+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
-roslaunch ur5_e_moveit_config ur5_e_moveit_planning_execution.launch
+roslaunch ur5e_moveit_config ur5e_moveit_planning_execution.launch
 ```
 ## Start up the GUI for moving the robot
 Open a new terminal tab with `ctrl+shift+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
-roslaunch ur5_e_moveit_config moveit_rviz.launch config:=$(rospack find ur5_moveit_config)/launch/moveit.rviz
+roslaunch ur5e_moveit_config moveit_rviz.launch config:=$(rospack find ur5_moveit_config)/launch/moveit.rviz
 ```
 
 ## Make the robot move
@@ -52,12 +52,26 @@ Select `Execute` from the MotionPlanning Commands section of the GUI.
 
 Watch the UR5e perform the motion in URSim as the robot performs the motion in the RViz window.
 
-# Lab Task setup
+# Lab Task
 
+## Demo solution
+
+There is a lab04 example solution on the new VM under `~/lab_demo_repos/lab04_demo` which is linked into the `~/lab_worspaces/lab04_ws/src/`.
+
+Checkout the demo solution [lab04_example](lab04_example)
+
+```
+source ~/lab_workspaces/lab04_ws/devel/setup.bash
+roslaunch lab04_example demo.launch
+```
+
+If you would still like to attempt the task, you can run the commands below. This will add you package along side the demo package in the  `lab04_ws`. If you would like to keep them separate, you can `mv` the existing `lab04_ws` somewhere else, or name your workspace differently.
+
+## Setup
 For setting up for the lab task:
 ```bash
 cd # Ensure we are in the home directory
-mkdir ~/lab04_repo/ # Create directory for repository
+mkdir -p ~/lab04_repo/ # Create directory for repository
 mkdir -p ~/lab_workspaces/lab04_ws/src # Create directory for ROS workspace and its source subdirectory 
 cd lab_workspaces/lab04_ws # Change into Lab04 ROS Workspace
 catkin_make # Initialise Workspace
@@ -74,12 +88,3 @@ Make a private repository on Github and follow the instructions to add an existi
 If you want to avoid using your username and password everytime ou push and pull, follow GitHubs guide on setting up SSH keys https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh and ensure you use the ssh url not the https url for linking the repo on the vm to your remote GitHub repo.
 
 After that, you're all set up! You can start programming your ROS nodes!
-
-## Demo solution
-
-Checkout the demo solution [lab04_example]
-
-```
-source ~/lab_workspaces/lab04_ws/devel/setup.bash
-roslaunch lab04_example demo.launch
-```
