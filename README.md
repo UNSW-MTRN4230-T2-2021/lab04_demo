@@ -38,7 +38,7 @@ roslaunch ur5_e_moveit_config ur5_e_moveit_planning_execution.launch
 Open a new terminal tab with `ctrl+shift+t`
 ```bash
 source ~/catkin_ws/devel/setup.bash
-roslaunch ur5_e_moveit_config moveit_rviz.launch config:=true
+roslaunch ur5_e_moveit_config moveit_rviz.launch config:=$(rospack find ur5_moveit_config)/launch/moveit.rviz
 ```
 
 ## Make the robot move
