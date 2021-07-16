@@ -36,7 +36,7 @@
 int main(int argc, char **argv)
 {
 
-    // Take hzs from ros param
+    // Extension: Take hzs from ros param
     auto const spin_hz = static_cast<int>(100);
 
     ros::init(argc, argv, "key_input");
