@@ -9,7 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
-  genmsg
+  genmsg # Needed for generating srv message
   roslaunch
 )
 

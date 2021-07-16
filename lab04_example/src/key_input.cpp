@@ -36,6 +36,7 @@
 int main(int argc, char **argv)
 {
 
+    // Take hzs from ros param
     auto const spin_hz = static_cast<int>(100);
 
     ros::init(argc, argv, "key_input");
@@ -102,12 +103,12 @@ int main(int argc, char **argv)
             }
         }
 
+        ros::spinOnce();
+
         if(key == KeyControl::SPACE_KEY) {
             /* exit */
             break;
         }
-
-        ros::spinOnce();
 
         loop_rate.sleep();
     }
