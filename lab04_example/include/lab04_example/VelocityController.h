@@ -4,7 +4,7 @@
 #include <std_msgs/Int8.h>
 #include <geometry_msgs/Twist.h>
 #include <lab04_example/key_control.h>
-#include <lab04_example/KeyToCmdVel.h>
+#include <lab04_example/KeyToCmdVel.h> // Auto generated file from KeyToCmdVel.srv
 
 namespace Lab04 {
     /* Inspiration from:
@@ -13,7 +13,7 @@ namespace Lab04 {
      */
     
     /* Class for managing publishers and subscribers for converting key input
-     * into vcommand velocities
+     * into command velocities
      */
     class VelocityController {
         public:
